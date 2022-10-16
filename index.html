@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+  <script src="./assets/echarts.js"></script>
+  <link rel="stylesheet" href="./assets/style.css">
+  <title>Tensorflow.js</title>
+</head>
+
+<body>
+  <main id="app">
+    <img id="logo" src="./assets/tensorflow-logo.png" alt="logo tensorflow">
+    
+    <div id="input">
+      <label for="number">Digite a quantidade de iterações que o modelo irá fazer na rede neural</label>
+      <br>
+      <input type="number" name="number" id="number" value="250">
+      <button type="submit" name="submit" id="submit">Começar</button>
+    </div>
+
+    <div id="chart"></div>
+  </main>
+  <script src="./app.js"></script>
+</body>
+
+</html>
