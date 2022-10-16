@@ -93,14 +93,12 @@ async function learnLinear() {
 
     await valorPrevisto.data()
       .then(data => {
-        console.log(data)
         valoresPrevistos.push(data[0])
         console.log(`Eixo X: ${valor} | Eixo Y: ${data[0]}`)
       })
   }
 
   //recarrega o gráfico
-  console.log(valoresPrevistos)
   grafico.setOption(opcoesGrafico)
 }
 
