@@ -88,6 +88,8 @@ async function learnLinear() {
   // Vai passar pela rede neural a quantidade de epochs definido abaixo:
   await model.fit(xs, ys, { epochs: quantidadeInput })
 
+  console.log(`==== | Epochs: ${quantidadeInput} | ====`)
+
   for (const valor of pontosEixoXASeremPreenchidos) {
     const valorPrevisto = model.predict(tf.tensor2d([valor], [1, 1]))
 
@@ -97,6 +99,10 @@ async function learnLinear() {
         console.log(`Eixo X: ${valor} | Eixo Y: ${data[0]}`)
       })
   }
+  
+  
+  console.log(`==================`) 
+  console.log(``)
 
   //recarrega o gráfico
   grafico.setOption(opcoesGrafico)
