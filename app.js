@@ -1,13 +1,12 @@
-const pontosEixoX = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+const pontosEixoX = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
-const valoresEixoY = [0, 5, 10, 15, 20, 25]
-
+const valoresEixoY = [0, 5, 10, 15, 20];
 const pontosEixoXJaPreenchidos = pontosEixoX.slice(0, valoresEixoY.length)
 const pontosEixoXASeremPreenchidos = pontosEixoX.slice(valoresEixoY.length, pontosEixoX.length + 1)
 
 let valoresPrevistos = []
 
-const quantidadeInput = document.getElementById('number').value
+const quantidadeInput = document.getElementById('number')
 const botaoSubmit = document.getElementById('submit')
 
 const opcoesGrafico = {
@@ -24,7 +23,7 @@ const opcoesGrafico = {
       data: valoresEixoY,
       type: 'line',
       label: {
-        show: true
+        show: false
       }
     },
     {
@@ -85,10 +84,10 @@ async function learnLinear() {
   const xs = tf.tensor2d(pontosEixoXJaPreenchidos, [pontosEixoXJaPreenchidos.length, 1])
   const ys = tf.tensor2d(valoresEixoY, [valoresEixoY.length, 1])
 
-  // Vai passar pela rede neural a quantidade de epochs definido abaixo:
-  await model.fit(xs, ys, { epochs: quantidadeInput })
+    // Vai passar pela rede neural a quantidade de epochs definido abaixo:
+  await model.fit(xs, ys, { epochs: quantidadeInput.value })
 
-  console.log(`==== | Epochs: ${quantidadeInput} | ====`)
+  console.log(`==== | Epochs: ${quantidadeInput.value} | ====`)
 
   for (const valor of pontosEixoXASeremPreenchidos) {
     const valorPrevisto = model.predict(tf.tensor2d([valor], [1, 1]))
