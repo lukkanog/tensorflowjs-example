@@ -23,7 +23,7 @@ const opcoesGrafico = {
       data: valoresEixoY,
       type: 'line',
       label: {
-        show: false
+        show: true
       }
     },
     {
@@ -49,6 +49,8 @@ const divGrafico = document.getElementById('chart')
 
 const grafico = echarts.init(divGrafico)
 grafico.setOption(opcoesGrafico)
+
+const loading = document.getElementById('loading-img')
 
 
 function limparResultados() {
@@ -107,4 +109,10 @@ async function learnLinear() {
   grafico.setOption(opcoesGrafico)
 }
 
-botaoSubmit.addEventListener('click', () => learnLinear())
+botaoSubmit.addEventListener('click', () => {
+  loading.style.display = 'block'
+  learnLinear()
+    .then(() => {
+      loading.style.display = 'none'
+    })
+})
