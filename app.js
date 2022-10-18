@@ -68,29 +68,35 @@ function limparResultados() {
 async function learnLinear() {
   limparResultados()
 
+  // Criando um modelo de regressão linear
   const model = tf.sequential()
 
+  // Adicionando uma camada densa com 1 neurônio
   model.add(tf.layers.dense({
     units: 1,
     inputShape: [1]
   }))
 
+  // Configurando o otimizador 
   const learningRate = 0.0001;
   const optimizer = tf.train.sgd(learningRate);
-
+  
+  // Compilando o modelo com o otimizador e a função de perda
   model.compile({
     loss: 'meanSquaredError',
     optimizer: optimizer
   })
 
+  // Preparando os dados de treinamento
   const xs = tf.tensor2d(pontosEixoXJaPreenchidos, [pontosEixoXJaPreenchidos.length, 1])
   const ys = tf.tensor2d(valoresEixoY, [valoresEixoY.length, 1])
 
-    // Vai passar pela rede neural a quantidade de epochs definido abaixo:
+  // Treinando o modelo
   await model.fit(xs, ys, { epochs: quantidadeInput.value })
 
   console.log(`==== | Epochs: ${quantidadeInput.value} | ====`)
 
+  // Fazendo as previsões
   for (const valor of pontosEixoXASeremPreenchidos) {
     const valorPrevisto = model.predict(tf.tensor2d([valor], [1, 1]))
 
@@ -105,7 +111,7 @@ async function learnLinear() {
   console.log(`==================`) 
   console.log(``)
 
-  //recarrega o gráfico
+  // Recarrega o gráfico
   grafico.setOption(opcoesGrafico)
 }
 
